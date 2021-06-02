@@ -11,9 +11,9 @@ export class AppComponent {
   get isNewEmailFormOpen() {
     return this._isNewEmailFormOpen;
   }
-  
+
   toggleNewEmailForm() {
     this._isNewEmailFormOpen = !this.isNewEmailFormOpen
   }
-
+ 
 }
