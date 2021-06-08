@@ -10,6 +10,10 @@ import { CommonModule } from '@angular/common';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    CmailFormGroupComponent,
+    CmailFormFieldDirective
   ]
 })
-export class AppModule { }
+export class CmailFormModule { }
