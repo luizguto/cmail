@@ -3,6 +3,7 @@ import { LoginComponent } from './modules/login/login.component';
 import { CaixaDeEntradaComponent } from './modules/caixa-de-entrada/caixa-de-entrada.component';
 import { CadastroComponent } from './modules/cadastro/cadastro.component';
 import { NgModule } from "@angular/core";
+import { AuthGuard } from "./guards/auth.guards";
 const rotas: Routes = [
     {
         path: 'login',
@@ -10,6 +11,7 @@ const rotas: Routes = [
     },
     {
         path: 'inbox',
+        canActivate: [AuthGuard],
         loadChildren: () => import('./modules/caixa-de-entrada/caixa-de-entrada.module').then(m => m.CaixaDeEntradaModule)
     },
     {
@@ -25,6 +27,7 @@ const rotas: Routes = [
     ],
     exports: [
         RouterModule
-    ]
+    ],
+    providers: [AuthGuard]
 })
 export class AppRoutingModule {}
