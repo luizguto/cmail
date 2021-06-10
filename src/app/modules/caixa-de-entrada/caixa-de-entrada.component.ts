@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Email } from 'src/app/models/email';
 import { EmailService } from 'src/app/services/email.service';
 
 @Component({
 	selector: 'cmail-caixa-de-entrada',
 	templateUrl: './caixa-de-entrada.component.html',
-	styles: ['./caixa-de-entrada.component.css']
+	styleUrls: ['./caixa-de-entrada.component.css']
 })
 export class CaixaDeEntradaComponent implements OnInit {
 
 	private _isNewEmailFormOpen = false;
-	emailList = [] as any;
+	emailList: Email[] = [];
 	email = {
 		destinatario: '',
 		assunto: '',
@@ -25,7 +26,9 @@ export class CaixaDeEntradaComponent implements OnInit {
 			.subscribe(
 				lista => {
 					this.emailList = lista;
-				}, erro => { console.error(erro) })
+				}, erro => { 
+					console.error(erro);
+				})
 	}
 
 	get isNewEmailFormOpen() {

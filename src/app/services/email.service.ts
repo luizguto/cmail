@@ -41,10 +41,10 @@ export class EmailService {
     listar() {
 
         return this.http
-            .get(this.api, { headers: this.cabecalho })
-            .pipe<Email[]>(
+            .get<any[]>(this.api, { headers: this.cabecalho })
+            .pipe<Email[]>( 
                 map(
-                    (response: Email[]) => {
+                    (response: any[]) => {
                         return response
                             .map(
                                 emailApi => new Email({
