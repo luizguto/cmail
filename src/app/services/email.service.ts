@@ -31,7 +31,8 @@ export class EmailService {
                             destinatario: emailApi.to,
                             assunto: emailApi.subject,
                             conteudo: emailApi.content,
-                            dataDeEnvio: emailApi.createdAt
+                            dataDeEnvio: emailApi.createdAt,
+                            id: emailApi.id
                         })
                     }
                 )
@@ -42,7 +43,7 @@ export class EmailService {
 
         return this.http
             .get<any[]>(this.api, { headers: this.cabecalho })
-            .pipe<Email[]>( 
+            .pipe<Email[]>(
                 map(
                     (response: any[]) => {
                         return response
@@ -51,12 +52,19 @@ export class EmailService {
                                     destinatario: emailApi.to,
                                     assunto: emailApi.subject,
                                     conteudo: emailApi.content,
-                                    dataDeEnvio: emailApi.createdAt
+                                    dataDeEnvio: emailApi.createdAt,
+                                    id: emailApi.id
                                 })
                             )
                     }
                 )
             )
+    }
+
+    deletar(id) {
+        return this
+            .http
+            .delete(`${this.api}/${id}`, { headers: this.cabecalho })
     }
 
 }
