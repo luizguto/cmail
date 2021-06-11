@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Email } from 'src/app/models/email';
 import { EmailService } from 'src/app/services/email.service';
+import { HeaderDataService } from 'src/app/services/header.service';
+import { PageDataService } from 'src/app/services/page-data.service';
 
 @Component({
 	selector: 'cmail-caixa-de-entrada',
@@ -16,9 +18,11 @@ export class CaixaDeEntradaComponent implements OnInit {
 		destinatario: '',
 		assunto: '',
 		conteudo: ''
-	}
+	};
 
-	constructor(private emailService: EmailService) { }
+	termoParaFiltro = '';
+
+	constructor(private emailService: EmailService, private pageService: PageDataService, private headerService: HeaderDataService) { }
 
 	ngOnInit() {
 		this.emailService
@@ -28,7 +32,13 @@ export class CaixaDeEntradaComponent implements OnInit {
 					this.emailList = lista;
 				}, erro => {
 					console.error(erro);
-				})
+				});
+
+		this.pageService.defineTitulo('Caixa de Entrada - CMail');
+
+		this.headerService
+			.valorDoFiltro
+			.subscribe(novoValor => this.termoParaFiltro = novoValor);
 	}
 
 	get isNewEmailFormOpen() {
@@ -64,10 +74,18 @@ export class CaixaDeEntradaComponent implements OnInit {
 					res => {
 						console.log(res);
 						//remove	o	email	da	lista	de	emails	depois	dela	ser	apagada	da	API
-						this.emailList = this.emailList.filter(email => email.id != emailId);
+						this.emailList = this.emailList.filter((email: Email) => email.id != emailId);
 					}
 					, err => console.error(err)
 				)
 		}
+	}
+
+	filtrarEmailsPorAssunto() {
+		const termoParaFiltroEmMinusculo = this.termoParaFiltro.toLowerCase();
+		return this.emailList.filter(email => {
+			const assunto = email.assunto.toLowerCase()
+			return assunto.includes(termoParaFiltroEmMinusculo)
+		})
 	}
 }
