@@ -1,0 +1,47 @@
+<div class="mdl-layout	mdl-js-layout	mdl-layout--fixed-drawer	mdl-layout--fixed-header">
+    <cmail-header></cmail-header>
+
+    <main class="mdl-layout__content">
+        <div class="page-content">
+            <div class="mdl-grid">
+
+
+
+                <div class="mdl-cell mdl-cell--10-col">
+
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-avatar">person</i>
+                        <span>{{email.destinatario}}</span>
+                    </span>
+                </div>
+
+                <div class="mdl-cell mdl-cell--1-col">
+                    <span class="emailList__itemDate">
+                        {{email.dataDeEnvio | date: 'dd/MM/yyy'}}
+                    </span>
+                </div>
+
+                <div class="mdl-cell mdl-cell--1-col">
+
+                    <span class="emailList__itemMenu">
+                        <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </span>
+
+                </div>
+            </div>
+
+            <div class="mdl-grid">
+                <span class="emailList__itemText mdl-list__item-text-body">
+                    {{email.assunto}}: {{email.introducaoDoConteudo}}
+                </span>
+            </div>
+
+
+
+
+
+        </div>
+    </main>
+</div>

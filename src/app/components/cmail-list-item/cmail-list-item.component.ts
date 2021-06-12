@@ -7,6 +7,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 })
 export class CmailListItemComponent implements OnInit {
 
+    @Input() id = '';
     @Input() destinatario = '';
     @Input() assunto = '';
     @Input() introducaoDoConteudo = '';

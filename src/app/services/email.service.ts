@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { Email } from "../models/email";
@@ -65,6 +66,12 @@ export class EmailService {
         return this
             .http
             .delete(`${this.api}/${id}`, { headers: this.cabecalho })
+    }
+
+    consultar(id): Observable<Email> {
+        return this.listar().pipe(map(
+            email => email.filter(email => email.id === id)[0])
+        );
     }
 
 }

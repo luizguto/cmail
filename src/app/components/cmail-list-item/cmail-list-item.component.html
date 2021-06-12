@@ -1,7 +1,7 @@
 <!-- Email Item -->
 <li class="emailList__item mdl-list__item mdl-list__item--three-line" tabindex="0">
   <span class="mdl-list__item-primary-content">
-    <a class="emailList__itemLink">
+    <a [routerLink]="['/inbox', id]" class="emailList__itemLink">
       <i class="material-icons mdl-list__item-avatar">person</i>
       <span>{{destinatario | marcador }}</span>
       <span class="emailList__itemText mdl-list__item-text-body">

@@ -1,9 +1,7 @@
 import { Routes, RouterModule } from "@angular/router";
-import { LoginComponent } from './modules/login/login.component';
-import { CaixaDeEntradaComponent } from './modules/caixa-de-entrada/caixa-de-entrada.component';
-import { CadastroComponent } from './modules/cadastro/cadastro.component';
 import { NgModule } from "@angular/core";
 import { AuthGuard } from "./guards/auth.guards";
+import { CmailItemComponent } from "./components/cmail-item/cmail-item.component";
 const rotas: Routes = [
     {
         path: 'login',
@@ -14,6 +12,11 @@ const rotas: Routes = [
         canActivate: [AuthGuard],
         loadChildren: () => import('./modules/caixa-de-entrada/caixa-de-entrada.module').then(m => m.CaixaDeEntradaModule)
     },
+    // {
+    //     path: 'inbox/:id',
+    //     component: CmailItemComponent,
+    //     canActivate: [AuthGuard],
+    // },
     {
         path: 'cadastro',
         loadChildren: () => import('./modules/cadastro/cadastro.module').then(m => m.CadastroModule)

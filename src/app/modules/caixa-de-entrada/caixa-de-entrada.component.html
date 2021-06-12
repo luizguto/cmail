@@ -7,6 +7,7 @@
                 <ul>
                     <li *ngFor="let	email of filtrarEmailsPorAssunto()">
                         <cmail-list-item
+                            [id]="email.id"
                             [destinatario]="email.destinatario"
                             [assunto]="email.assunto"
                             [introducaoDoConteudo]="email.introducaoDoConteudo"

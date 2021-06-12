@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CmailListItemComponent } from './cmail-list-item/cmail-list-item.component';
 import { MarcadorPipe } from '../pipes/marcador.pipe';
+import { CmailItemComponent } from './cmail-item/cmail-item.component';
 
 @NgModule({
     declarations: [
         HeaderComponent,
         CmailListItemComponent,
-        MarcadorPipe
+        CmailItemComponent,
+        MarcadorPipe        
     ],
     imports: [
         CommonModule,
@@ -17,7 +19,8 @@ import { MarcadorPipe } from '../pipes/marcador.pipe';
     ],
     exports: [
         HeaderComponent,
-        CmailListItemComponent
+        CmailListItemComponent,
+        CmailItemComponent
     ]
 })
 export class SharedComponentsModule { }
